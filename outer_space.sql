@@ -1,13 +1,13 @@
 CREATE TABLE stars (
     id SERIAL PRIMARY KEY,
-    star_name TEXT NOT NULL,
-    temp NUMERIC NOT NULL
+    star_name TEXT NOT NULL UNIQUE,
+    temp_kelvin FLOAT NOT NULL
 );
 
 
 CREATE TABLE planets (
     id SERIAL PRIMARY KEY,
-    planet_name TEXT NOT NULL,
+    planet_name TEXT NOT NULL UNIQUE,
     orbital_period FLOAT NOT NULL,
     star_id INT NOT NULL REFERENCES stars
 );
@@ -15,11 +15,11 @@ CREATE TABLE planets (
 
 CREATE TABLE moons (
     id SERIAL PRIMARY KEY,
-    moon_name TEXT NOT NULL,
+    moon_name TEXT NOT NULL UNIQUE,
     planet_id INT NOT NULL REFERENCES planets
 );
 
-INSERT INTO stars (star_name, temp)
+INSERT INTO stars (star_name, temp_kelvin)
     VALUES
         ('The Sun', 5800),
         ('Proxima Centauri', 3042),
